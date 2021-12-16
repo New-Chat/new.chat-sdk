@@ -1,0 +1,42 @@
+{
+  "name": "@a-dex/a-dex.chat-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:npm": "tsc",
+    "build:web": "webpack --config webpack.prod.js",
+    "build": "yarn run build:npm && yarn run build:web",
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "publish": "yarn build && yarn publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A-DEX/a-dex.chat-js.git"
+  },
+  "author": "Avm07",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/A-DEX/a-dex.chat-js/issues"
+  },
+  "homepage": "https://github.com/A-DEX/a-dex.chat-js#readme",
+  "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.11.12",
+    "@types/node-fetch": "^3.0.3",
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "ts-loader": "^9.1.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.10"
+  },
+  "dependencies": {
+    "elliptic": "^6.5.2",
+    "eosjs": "^22.1.0",
+    "node-fetch": "^2.6.1",
+    "sha.js": "^2.4.11"
+  }
+}
