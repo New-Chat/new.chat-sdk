@@ -4,6 +4,8 @@
 
 # a-dex.chat-js
 
+JS library to send and read data from the a-dex.chat.
+
 ## Usage
 
 This is a [Node.js](https://nodejs.org/en/) module available through the
