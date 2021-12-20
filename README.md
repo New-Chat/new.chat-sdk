@@ -1,5 +1,8 @@
-# a-dex.chat-js
+<p align="center">
+	<img src="./public/a-dex.chat.js-logo.png" width="600">
+</p>
 
+# a-dex.chat-js
 
 ## Usage
 
