@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        newcoinpools: './src/index.ts',
+        newchat: './src/index.ts',
     },
     mode: 'production',
     module: {

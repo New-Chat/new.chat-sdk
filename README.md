@@ -1,10 +1,10 @@
 <p align="center">
-	<img src="./public/a-dex.chat.js-logo.png" width="600">
+	<img src="./public/new.chat-js-logo.png" width="600">
 </p>
 
-# a-dex.chat-js
+# new.chat-js
 
-JS library to send and read data from the a-dex.chat.
+JS library to encrypt/decrypt messages and fetch data from the new.chat smart contract.
 
 ## Usage
 
@@ -13,7 +13,7 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-npm i @a-dex/a-dex.chat-js
+npm i @newchat/new.chat-js
 ```
 
 ### Initialize

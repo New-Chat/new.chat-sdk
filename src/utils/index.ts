@@ -5,7 +5,8 @@ const { PublicKey } = require("eosjs/dist/PublicKey");
 const { KeyType } = require("eosjs/dist/eosjs-numeric");
 const EC = require("elliptic").ec;
 
-const crypto = require("crypto");
+//const crypto = require("crypto");
+const crypto = require("crypto-js");
 const shajs = require("sha.js");
 
 export async function encryptMessage(
