@@ -13,9 +13,17 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-npm i @newchat/new.chat-js
+npm install @newchat/new.chat-js
 ```
 
 ### Initialize
 
 Web library can be found in the [dist] folder
+
+```javascript
+// standard import
+const {ActionGenerator, HyperionApi} = require("newchat");
+
+// ES6 import
+import {ActionGenerator, HyperionApi} from "newchat"
+```

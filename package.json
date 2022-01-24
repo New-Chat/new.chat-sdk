@@ -1,6 +1,6 @@
 {
   "name": "@newchat/new.chat-js",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "js module to encrypt/decrypt messages and fetch data from the new.chat smart contract",
   "main": "dist/index.js",
   "scripts": {
@@ -13,6 +13,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/New-Chat/new.chat-js.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "newcoin",
