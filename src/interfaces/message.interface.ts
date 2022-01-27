@@ -6,3 +6,12 @@ export interface DirectMessagePayload {
   cipher_text: string;
   mac: string;
 }
+
+export interface ChannelMessagePayload {
+  from: string;
+  channel: string;
+  iv: string;
+  ephem_key: string;
+  cipher_text: string;
+  mac: string;
+}
