@@ -5,7 +5,7 @@ import {
 } from "../interfaces/chain.interface";
 import { ChannelPayload } from "../interfaces/channel.interface";
 
-export default class RpcApi {
+export default class ChainApi {
   readonly nodeos_url: string;
   readonly contract: string;
   readonly fetch: any;
