@@ -1,7 +1,3 @@
-<p align="center">
-	<img src="./public/new.chat-js-logo.png" width="600">
-</p>
-
 # new.chat-js
 
 JS library to encrypt/decrypt messages and fetch data from the new.chat smart contract.
@@ -22,8 +18,8 @@ Web library can be found in the [dist] folder
 
 ```javascript
 // standard import
-const {ActionGenerator, HyperionApi} = require("newchat");
+const { ActionGenerator, HyperionApi } = require("@newchat/new.chat-js");
 
 // ES6 import
-import {ActionGenerator, HyperionApi} from "newchat"
+import { ActionGenerator, HyperionApi } from "@newchat/new.chat-js"
 ```

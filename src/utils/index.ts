@@ -1,4 +1,4 @@
-import { DirectMessagePayload } from "../interfaces/message.interface";
+import { DirectMessagePayload } from "../interfaces";
 
 const { PrivateKey } = require("eosjs/dist/PrivateKey");
 const { PublicKey } = require("eosjs/dist/PublicKey");

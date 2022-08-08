@@ -1,11 +1,6 @@
-import {
-  GetCurrencyStats,
-  GetCurrencyBalance,
-  GetTableRowsPayload,
-} from "../interfaces/chain.interface";
-import { ChannelPayload } from "../interfaces/channel.interface";
+import { GetTableRowsPayload, ChannelPayload } from "../interfaces";
 
-export default class ChainApi {
+export class ChainApi {
   readonly nodeos_url: string;
   readonly contract: string;
   readonly fetch: any;
@@ -30,39 +25,11 @@ export default class ChainApi {
       code: this.contract,
       scope: this.contract,
       table: "prvchannels",
-      table_key: opts.channel,
-      lower_bound: opts.channel,
-      upper_bound: opts.channel,
+      table_key: opts.tag,
+      lower_bound: opts.tag,
+      upper_bound: opts.tag,
       key_type: "name",
       index_position: "1",
-    });
-  }
-
-  async getPrivateChannelByOwner(opts: ChannelPayload): Promise<any> {
-    return this.getTableRows({
-      json: true,
-      code: this.contract,
-      scope: this.contract,
-      table: "prvchannels",
-      table_key: opts.owner,
-      lower_bound: opts.owner,
-      upper_bound: opts.owner,
-      key_type: "name",
-      index_position: "2",
-    });
-  }
-
-  async getPrivateChannelByDescription(opts: ChannelPayload): Promise<any> {
-    return this.getTableRows({
-      json: true,
-      code: this.contract,
-      scope: this.contract,
-      table: "prvchannels",
-      table_key: opts.description_sha256,
-      lower_bound: opts.description_sha256,
-      upper_bound: opts.description_sha256,
-      key_type: "sha256",
-      index_position: "3",
     });
   }
 
@@ -72,39 +39,11 @@ export default class ChainApi {
       code: this.contract,
       scope: this.contract,
       table: "pubchannels",
-      table_key: opts.channel,
-      lower_bound: opts.channel,
-      upper_bound: opts.channel,
+      table_key: opts.tag,
+      lower_bound: opts.tag,
+      upper_bound: opts.tag,
       key_type: "name",
       index_position: "1",
-    });
-  }
-
-  async getPublicChannelByOwner(opts: ChannelPayload): Promise<any> {
-    return this.getTableRows({
-      json: true,
-      code: this.contract,
-      scope: this.contract,
-      table: "pubchannels",
-      table_key: opts.owner,
-      lower_bound: opts.owner,
-      upper_bound: opts.owner,
-      key_type: "name",
-      index_position: "2",
-    });
-  }
-
-  async getPublicChannelByDescription(opts: ChannelPayload): Promise<any> {
-    return this.getTableRows({
-      json: true,
-      code: this.contract,
-      scope: this.contract,
-      table: "pubchannels",
-      table_key: opts.description_sha256,
-      lower_bound: opts.description_sha256,
-      upper_bound: opts.description_sha256,
-      key_type: "sha256",
-      index_position: "3",
     });
   }
 }

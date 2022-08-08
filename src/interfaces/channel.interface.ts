@@ -1,5 +1,5 @@
 export interface ChannelPayload {
-  channel: string;
+  tag: string;
   owner: string;
   description_sha256: string;
 }

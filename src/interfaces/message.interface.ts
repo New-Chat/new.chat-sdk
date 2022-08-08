@@ -15,3 +15,12 @@ export interface ChannelMessagePayload {
   cipher_text: string;
   mac: string;
 }
+
+export interface ChatMessagePayload {
+  from: string;
+  chat: string;
+  iv: string;
+  ephem_key: string;
+  cipher_text: string;
+  mac: string;
+}

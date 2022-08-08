@@ -1,6 +1,6 @@
-import { GetActionsPayload } from "../interfaces/hyperion.interface";
+import { GetActionsPayload } from "../interfaces";
 
-export default class HyperionApi {
+export class HyperionApi {
   readonly hyperion_url: string;
   readonly fetch: any;
 

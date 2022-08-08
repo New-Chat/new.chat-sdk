@@ -1,14 +1,18 @@
 {
   "name": "@newchat/new.chat-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "js module to encrypt/decrypt messages and fetch data from the new.chat smart contract",
   "main": "dist/index.js",
+  "types": "",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build:npm": "tsc",
     "build:web": "webpack --config webpack.prod.js",
     "build": "yarn run build:npm && yarn run build:web",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "publish": "yarn build && yarn publish"
+    "publish": "yarn publish"
   },
   "repository": {
     "type": "git",
@@ -24,7 +28,7 @@
     "newlife",
     "eosio"
   ],
-  "author": "Avm07",
+  "author": "Artem Maliuga <@Avm07>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/New-Chat/new.chat-js/issues"
