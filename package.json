@@ -1,7 +1,7 @@
 {
-  "name": "@newchat/new.chat-js",
-  "version": "1.0.3",
-  "description": "js module to encrypt/decrypt messages and fetch data from the new.chat smart contract",
+  "name": "@newchat/new.chat-sdk",
+  "version": "1.0.4",
+  "description": "⚒️ An SDK for building applications on top of NewChat",
   "main": "dist/index.js",
   "types": "",
   "files": [
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/New-Chat/new.chat-js.git"
+    "url": "git+https://github.com/New-Chat/new.chat-sdk.git"
   },
   "publishConfig": {
     "access": "public"
@@ -31,9 +31,9 @@
   "author": "Artem Maliuga <@Avm07>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/New-Chat/new.chat-js/issues"
+    "url": "https://github.com/New-Chat/new.chat-sdk/issues"
   },
-  "homepage": "https://github.com/New-Chat/new.chat-js#readme",
+  "homepage": "https://github.com/New-Chat/new.chat-sdk#readme",
   "devDependencies": {
     "@types/chai": "^4.3.0",
     "@types/crypto-js": "^4.1.0",
