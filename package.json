@@ -1,6 +1,6 @@
 {
   "name": "@newchat/new.chat-sdk",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "⚒️ An SDK for building applications on top of NewChat",
   "main": "dist/index.js",
   "types": "",
@@ -42,7 +42,7 @@
     "@types/node": "^16.11.21",
     "@types/node-fetch": "^3.0.3",
     "chai": "^4.3.4",
-    "mocha": "^8.4.0",
+    "mocha": "^10.0.0",
     "ts-loader": "^9.1.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4",
