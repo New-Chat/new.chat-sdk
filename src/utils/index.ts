@@ -1,84 +1,104 @@
-import { DirectMessagePayload } from "../interfaces";
-
-const { PrivateKey } = require("eosjs/dist/PrivateKey");
+import { KeyType } from "eosjs/dist/eosjs-numeric";
+import { PrivateKey } from "eosjs/dist/PrivateKey";
+// import { PublicKey } from "eosjs/dist/PublicKey";
 const { PublicKey } = require("eosjs/dist/PublicKey");
-const { KeyType } = require("eosjs/dist/eosjs-numeric");
-const EC = require("elliptic").ec;
+import { ec } from "elliptic";
 
-//const crypto = require("crypto");
-const crypto = require("crypto-js");
-const shajs = require("sha.js");
+import CryptoJS from "crypto-js";
+import wordArray from "crypto-js/lib-typedarrays";
+import encHex from "crypto-js/enc-hex";
+import sha512 from "crypto-js/sha512";
+import hmacSHA256 from "crypto-js/hmac-sha256";
+import AES from "crypto-js/aes";
 
-export async function encryptMessage(
-  from: string,
-  to: string,
-  rcptPubKey: string,
-  plainText: Buffer
-): Promise<DirectMessagePayload> {
-  let ellipticKey = PublicKey.fromString(rcptPubKey).toElliptic();
+import { EncodeResult } from "../types";
 
-  let ephemKey = new EC("secp256k1").genKeyPair();
-  let ephemPublicKey = PublicKey.fromElliptic(ephemKey, KeyType.k1);
+export function encryptMessage(
+  plainText: string,
+  rcptPubKey: string
+): EncodeResult {
+  const ellipticKey = PublicKey.fromString(rcptPubKey).toElliptic();
 
-  let shared = Buffer.from(
+  const ephemKey = new ec("secp256k1").genKeyPair();
+  const ephemPublicKey = PublicKey.fromElliptic(ephemKey, KeyType.k1);
+
+  const shared = Buffer.from(
     ephemKey.derive(ellipticKey.getPublic()).toString("hex"),
     "hex"
   );
-  let hash = new shajs.sha512().update(shared).digest();
+  const hash = sha512(encHex.parse(shared.toString("hex"))).toString();
 
-  let iv = crypto.randomBytes(16);
-  let encryptionKey = hash.slice(0, 32);
-  let macKey = hash.slice(32);
+  const iv = wordArray.random(16).toString();
+  const encryptionKey = hash.slice(0, 64);
+  const macKey = hash.slice(64);
 
-  let cipher = crypto.createCipheriv("aes-256-cbc", encryptionKey, iv);
-  let firstChunk = cipher.update(plainText);
-  let secondChunk = cipher.final();
-  let ciphertext = Buffer.concat([firstChunk, secondChunk]);
+  const plaintextFinal = Buffer.from(plainText, "utf8").toString("hex");
 
-  let dataToMac = Buffer.concat([iv, ephemPublicKey.key.data, ciphertext]);
-  let mac = crypto.createHmac("sha256", macKey).update(dataToMac).digest();
+  const encrypted = AES.encrypt(
+    encHex.parse(plaintextFinal),
+    encHex.parse(encryptionKey),
+    {
+      iv: encHex.parse(iv),
+    }
+  ).ciphertext.toString();
 
-  return {
-    from: from,
-    to: to,
-    iv: iv.toString("hex"),
-    ephem_key: ephemPublicKey.toString(),
-    cipher_text: ciphertext.toString("hex"),
-    mac: mac.toString("hex"),
+  const ephemPublicKeyStr = Buffer.from(ephemPublicKey.key.data).toString(
+    "hex"
+  );
+  const dataToMac = iv + ephemPublicKeyStr + encrypted;
+  const mac = hmacSHA256(
+    encHex.parse(dataToMac),
+    encHex.parse(macKey)
+  ).toString();
+
+  const result: EncodeResult = {
+    iv: iv,
+    ephemPubKey: ephemPublicKey.toString(),
+    cipherText: encrypted,
+    mac: mac,
   };
+
+  return result;
 }
 
-export async function decryptMessage(
-  rcptPrvKey: string,
-  msg: DirectMessagePayload
-): Promise<string> {
-  let ellipticKey = PrivateKey.fromString(rcptPrvKey).toElliptic();
-  let ephemPublicKey = PublicKey.fromString(msg.ephem_key);
-  let ephemEllKey = ephemPublicKey.toElliptic();
-  let iv = Buffer.from(msg.iv, "hex");
-  let cipherText = Buffer.from(msg.cipher_text, "hex");
-  let mac = Buffer.from(msg.mac, "hex");
+export function decryptMessage(
+  iv: string,
+  ephemKey: string,
+  cipherText: string,
+  mac: string,
+  rcptPrvKey: string
+): string {
+  const ellipticKey = PrivateKey.fromString(rcptPrvKey).toElliptic();
+  const ephemPublicKey = PublicKey.fromString(ephemKey);
+  const ephemEllKey = ephemPublicKey.toElliptic();
 
-  let shared = Buffer.from(
+  const shared = Buffer.from(
     ellipticKey.derive(ephemEllKey.getPublic()).toString("hex"),
     "hex"
   );
-  let hash = shajs("sha512").update(shared).digest();
 
-  let encryptionKey = hash.slice(0, 32);
-  let macKey = hash.slice(32);
+  const hash = sha512(encHex.parse(shared.toString("hex"))).toString();
+  const encryptionKey = hash.slice(0, 64);
+  const macKey = hash.slice(64);
 
-  let dataToMac = Buffer.concat([iv, ephemPublicKey.key.data, cipherText]);
-  let realMac = crypto.createHmac("sha256", macKey).update(dataToMac).digest();
+  const ephemPublicKeyStr = Buffer.from(ephemPublicKey.key.data).toString("hex");
+  const dataToMac = iv + ephemPublicKeyStr + cipherText;
+  const realMac = hmacSHA256(
+    encHex.parse(dataToMac.toString()),
+    encHex.parse(macKey)
+  ).toString();
 
-  if (!realMac.equals(mac)) {
+  if (realMac !== mac) {
     throw Error("Invalid mac");
   }
 
-  let cipher = crypto.createDecipheriv("aes-256-cbc", encryptionKey, iv);
-  let firstChunk = cipher.update(cipherText);
-  let secondChunk = cipher.final();
-  let plainText = Buffer.concat([firstChunk, secondChunk]);
+  const cipherParams = CryptoJS.lib.CipherParams.create({
+    ciphertext: encHex.parse(cipherText),
+  });
 
-  return plainText.toString("hex");
+  const plainText = AES.decrypt(cipherParams, encHex.parse(encryptionKey), {
+    iv: encHex.parse(iv),
+  }).toString(CryptoJS.enc.Utf8);
+
+  return plainText;
 }

@@ -14,7 +14,7 @@ export class ActionGenerator {
     return this._pack(this.contract, authorization, "crtpubch", {
       channel,
       owner,
-      description,
+      description
     });
   }
 
@@ -29,7 +29,7 @@ export class ActionGenerator {
       channel,
       owner,
       description,
-      public_key,
+      public_key
     });
   }
 
@@ -38,17 +38,17 @@ export class ActionGenerator {
     from: string,
     to: string,
     iv: string,
-    ephem_key: string,
-    cipher_text: string,
+    ephemKey: string,
+    cipherText: string,
     mac: string
   ): Promise<EosioActionObject[]> {
     return this._pack(this.contract, authorization, "senddm", {
-      from,
-      to,
-      iv,
-      ephem_key,
-      cipher_text,
-      mac,
+      from: from,
+      to: to,
+      iv: iv,
+      ephem_key: ephemKey,
+      cipher_text: cipherText,
+      mac: mac
     });
   }
 
@@ -57,17 +57,17 @@ export class ActionGenerator {
     from: string,
     channel: string,
     iv: string,
-    ephem_key: string,
-    cipher_text: string,
+    ephemKey: string,
+    cipherText: string,
     mac: string
   ): Promise<EosioActionObject[]> {
     return this._pack(this.contract, authorization, "sendprvchmsg", {
-      from,
-      channel,
-      iv,
-      ephem_key,
-      cipher_text,
-      mac,
+      from: from,
+      channel: channel,
+      iv: iv,
+      ephem_key: ephemKey,
+      cipher_text: cipherText,
+      mac: mac
     });
   }
 
@@ -76,17 +76,17 @@ export class ActionGenerator {
     from: string,
     channel: string,
     iv: string,
-    ephem_key: string,
-    cipher_text: string,
+    ephemKey: string,
+    cipherText: string,
     mac: string
   ): Promise<EosioActionObject[]> {
     return this._pack(this.contract, authorization, "sendpubchmsg", {
-      from,
-      channel,
-      iv,
-      ephem_key,
-      cipher_text,
-      mac,
+      from: from,
+      channel: channel,
+      iv: iv,
+      ephem_key: ephemKey,
+      cipher_text: cipherText,
+      mac: mac
     });
   }
 
