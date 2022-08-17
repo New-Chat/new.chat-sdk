@@ -23,3 +23,15 @@ const { ActionGenerator, HyperionApi } = require("@newchat/new.chat-sdk");
 // ES6 import
 import { ActionGenerator, HyperionApi } from "@newchat/new.chat-sdk"
 ```
+
+## Documentation
+
+### ChainApi
+
+Uses only native nodeos calls to chain api plugin.
+
+### ActionGenerator
+
+Helper class to construct contract actions which can be signed and pushed to chain with eosjs. 
+
+Detailed information about each action can be found [here](docs/actions.md).
