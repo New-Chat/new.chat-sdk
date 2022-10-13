@@ -7,6 +7,7 @@ import fetch from 'node-fetch';
 describe("Hyperion Api Tests", () => {
   const hyperionApi = new HyperionApi(
     "https://jungle3.cryptolions.io",
+    "chattesttest",
     fetch
   );
 
