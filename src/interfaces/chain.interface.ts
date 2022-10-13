@@ -9,6 +9,16 @@ export interface GetCurrencyBalance {
   symbol?: string;
 }
 
+export interface GetTableByScopePayload {
+  code: string;
+  table?: string;
+  lower_bound?: string;
+  upper_bound?: string;
+  limit?: number;
+  reverse?: boolean;
+  show_payer?: boolean;
+}
+
 export interface GetTableRowsPayload {
   json: boolean;
   code: string;
@@ -24,4 +34,3 @@ export interface GetTableRowsPayload {
   reverse?: boolean;
   show_payer?: boolean;
 }
-

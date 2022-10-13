@@ -1,6 +1,6 @@
 {
   "name": "@newchat/new.chat-sdk",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "⚒️ An SDK for building applications on top of NewChat",
   "main": "dist/index.js",
   "types": "",
@@ -53,6 +53,6 @@
     "crypto-js": "^4.1.1",
     "elliptic": "^6.5.2",
     "eosjs": "^22.1.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.2.10"
   }
 }
