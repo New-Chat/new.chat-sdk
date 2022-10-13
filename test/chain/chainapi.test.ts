@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 
 // tslint:disable-next-line:no-var-requires
 
-describe("Utils Tests", () => {
+describe("Chain Api Tests", () => {
   const chainApi = new ChainApi(
     "https://jungle3.cryptolions.io",
     "chattesttest",
