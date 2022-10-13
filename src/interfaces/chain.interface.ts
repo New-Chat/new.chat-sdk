@@ -19,6 +19,10 @@ export interface GetTableByScopePayload {
   show_payer?: boolean;
 }
 
+export interface GetAccountPayload {
+  account_name: string;
+}
+
 export interface GetTableRowsPayload {
   json: boolean;
   code: string;

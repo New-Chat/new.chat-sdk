@@ -1,4 +1,9 @@
-import { GetTableByScopePayload, GetTableRowsPayload, ChannelPayload } from "../interfaces";
+import {
+  GetTableByScopePayload,
+  GetAccountPayload,
+  GetTableRowsPayload,
+  ChannelPayload,
+} from "../interfaces";
 
 export class ChainApi {
   readonly nodeos_url: string;
@@ -13,6 +18,14 @@ export class ChainApi {
 
   async getTableByScope(payload: GetTableByScopePayload): Promise<any> {
     return await this.fetch(`${this.nodeos_url}/v1/chain/get_table_by_scope`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  }
+
+  async getAccount(payload: GetAccountPayload): Promise<any> {
+    return await this.fetch(`${this.nodeos_url}/v1/chain/get_account`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

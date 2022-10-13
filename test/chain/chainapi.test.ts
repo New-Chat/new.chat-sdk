@@ -27,6 +27,18 @@ describe("Chain Api Tests", () => {
     // expect(result.mac).to.have.lengthOf(64);
   }).timeout(2000);
 
+  it("Get Accouns Test", async () => {
+    const res = await chainApi.getAccount({
+      account_name: "chattesttest"
+=    });
+
+    const data = await res.json();
+    console.log(data);
+
+    // expect(result.mac).to.be.a("string");
+    // expect(result.mac).to.have.lengthOf(64);
+  }).timeout(2000);
+
   it("Get Channels Test", async () => {
     const res = await chainApi.getTableRows({
         json: true,
