@@ -1,6 +1,5 @@
-import { expect } from "chai";
-import { HyperionApi } from "../../src/api";
-import fetch from 'node-fetch';
+import { HyperionApi } from "../src/api";
+import fetch from "node-fetch";
 
 // tslint:disable-next-line:no-var-requires
 
@@ -34,7 +33,6 @@ describe("Hyperion Api Tests", () => {
 
     const data = await res.json();
     console.log(data);
-      
   }).timeout(2000);
 
   it("Get Chat Messages Test", async () => {
@@ -46,6 +44,5 @@ describe("Hyperion Api Tests", () => {
 
     const data = await res.json();
     console.log(data);
-      
   }).timeout(2000);
 });

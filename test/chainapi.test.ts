@@ -1,6 +1,5 @@
-import { expect } from "chai";
-import { ChainApi } from "../../src/api";
-import fetch from 'node-fetch';
+import { ChainApi } from "../src/api";
+import fetch from "node-fetch";
 
 // tslint:disable-next-line:no-var-requires
 
@@ -27,10 +26,10 @@ describe("Chain Api Tests", () => {
     // expect(result.mac).to.have.lengthOf(64);
   }).timeout(2000);
 
-  it("Get Accouns Test", async () => {
+  it("Get Account Test", async () => {
     const res = await chainApi.getAccount({
-      account_name: "chattesttest"
-=    });
+      account_name: "chattesttest",
+    });
 
     const data = await res.json();
     console.log(data);
@@ -41,33 +40,31 @@ describe("Chain Api Tests", () => {
 
   it("Get Channels Test", async () => {
     const res = await chainApi.getTableRows({
-        json: true,
-        code: chainApi.contract,
-        scope: chainApi.contract,
-        table: "channels",
-        lower_bound: "tester",
-        upper_bound: "testerzzzzzz",
-        limit: 10,
-      });
+      json: true,
+      code: chainApi.contract,
+      scope: chainApi.contract,
+      table: "channels",
+      lower_bound: "tester",
+      upper_bound: "testerzzzzzz",
+      limit: 10,
+    });
 
     const data = await res.json();
     console.log(data);
-      
   }).timeout(2000);
 
   it("Get Chats Test", async () => {
     const res = await chainApi.getTableRows({
-        json: true,
-        code: chainApi.contract,
-        scope: chainApi.contract,
-        table: "chats",
-        lower_bound: "tester",
-        upper_bound: "testerzzzzzz",
-        limit: 10,
-      });
+      json: true,
+      code: chainApi.contract,
+      scope: chainApi.contract,
+      table: "chats",
+      lower_bound: "tester",
+      upper_bound: "testerzzzzzz",
+      limit: 10,
+    });
 
     const data = await res.json();
     console.log(data);
-      
   }).timeout(2000);
 });
