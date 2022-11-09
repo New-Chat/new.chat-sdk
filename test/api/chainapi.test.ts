@@ -1,5 +1,6 @@
-import { ChainApi } from "../src/api";
+import { expect } from "chai";
 import fetch from "node-fetch";
+import { ChainApi } from "../../src/api";
 
 // tslint:disable-next-line:no-var-requires
 
@@ -19,11 +20,7 @@ describe("Chain Api Tests", () => {
       limit: 10,
     });
 
-    const data = await res.json();
-    console.log(data);
-
-    // expect(result.mac).to.be.a("string");
-    // expect(result.mac).to.have.lengthOf(64);
+    expect(res).not.be.undefined;
   }).timeout(2000);
 
   it("Get Account Test", async () => {
@@ -31,11 +28,7 @@ describe("Chain Api Tests", () => {
       account_name: "chattesttest",
     });
 
-    const data = await res.json();
-    console.log(data);
-
-    // expect(result.mac).to.be.a("string");
-    // expect(result.mac).to.have.lengthOf(64);
+    expect(res).not.be.undefined;
   }).timeout(2000);
 
   it("Get Channels Test", async () => {
@@ -49,8 +42,7 @@ describe("Chain Api Tests", () => {
       limit: 10,
     });
 
-    const data = await res.json();
-    console.log(data);
+    expect(res).not.be.undefined;
   }).timeout(2000);
 
   it("Get Chats Test", async () => {
@@ -64,7 +56,6 @@ describe("Chain Api Tests", () => {
       limit: 10,
     });
 
-    const data = await res.json();
-    console.log(data);
+    expect(res).not.be.undefined;
   }).timeout(2000);
 });

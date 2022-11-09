@@ -1,4 +1,4 @@
-export interface DirectMessagePayload {
+export interface DirectMessage {
   from: string;
   to: string;
   iv: string;
@@ -7,7 +7,7 @@ export interface DirectMessagePayload {
   mac: string;
 }
 
-export interface ChannelMessagePayload {
+export interface ChannelMessage {
   from: string;
   channel: string;
   iv: string;
@@ -16,7 +16,7 @@ export interface ChannelMessagePayload {
   mac: string;
 }
 
-export interface ChatMessagePayload {
+export interface ChatMessage {
   from: string;
   chat: string;
   iv: string;

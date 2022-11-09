@@ -1,4 +1,4 @@
-import { GetActionsPayload, GetMessagesPayload } from "../interfaces";
+import { GetActions } from "../interfaces";
 
 export class HyperionApi {
   readonly hyperion_url: string;
@@ -11,36 +11,21 @@ export class HyperionApi {
     this.fetch = fetch;
   }
 
-  async getActions(payload: GetActionsPayload): Promise<any> {
-    return await this.fetch(`${this.hyperion_url}/v2/history/get_actions`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
-  }
-
-  async getDirectMessages(payload: GetMessagesPayload): Promise<any> {
-    return await this.fetch(
-      `${this.hyperion_url}/v2/history/get_actions?limit=${payload.limit}&skip=${payload.skip}&account=${payload.account}&track=${payload.track}&filter=${this.contract}:senddm&sort=${payload.sort}&after=${payload.after}&before=${payload.before}&simple=${payload.simple}&hot_only=${payload.hot_only}&noBinary=${payload.noBinary}&checkLib=${payload.checkLib}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
+  parseQueryParams(params: { [key: string]: any }) {
+    const entries = [];
+    for (const key of Object.keys(params)) {
+      const value = params[key];
+      if (value !== undefined) {
+        entries.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
       }
-    );
+    }
+    return entries.join("&");
   }
 
-  async getChannelMessages(payload: GetMessagesPayload): Promise<any> {
+  async getActions(opts: GetActions): Promise<any> {
     return await this.fetch(
-      `${this.hyperion_url}/v2/history/get_actions?limit=${payload.limit}&skip=${payload.skip}&account=${payload.account}&track=${payload.track}&filter=${this.contract}:sendchlmsg&sort=${payload.sort}&after=${payload.after}&before=${payload.before}&simple=${payload.simple}&hot_only=${payload.hot_only}&noBinary=${payload.noBinary}&checkLib=${payload.checkLib}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
-
-  async getChatMessages(payload: GetMessagesPayload): Promise<any> {
-    return await this.fetch(
-      `${this.hyperion_url}/v2/history/get_actions?limit=${payload.limit}&skip=${payload.skip}&account=${payload.account}&track=${payload.track}&filter=${this.contract}:sendchtmsg&sort=${payload.sort}&after=${payload.after}&before=${payload.before}&simple=${payload.simple}&hot_only=${payload.hot_only}&noBinary=${payload.noBinary}&checkLib=${payload.checkLib}`,
+      `${this.hyperion_url}/v2/history/get_actions?` +
+        this.parseQueryParams(opts),
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },

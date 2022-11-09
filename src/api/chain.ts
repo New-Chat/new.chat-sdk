@@ -1,7 +1,7 @@
 import {
-  GetTableByScopePayload,
-  GetAccountPayload,
-  GetTableRowsPayload,
+  GetTableByScope,
+  GetAccount,
+  GetTableRows,
   ChannelPayload,
 } from "../interfaces";
 
@@ -16,27 +16,27 @@ export class ChainApi {
     this.fetch = fetch;
   }
 
-  async getTableByScope(payload: GetTableByScopePayload): Promise<any> {
+  async getTableByScope(opts: GetTableByScope): Promise<any> {
     return await this.fetch(`${this.nodeos_url}/v1/chain/get_table_by_scope`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(opts),
     });
   }
 
-  async getAccount(payload: GetAccountPayload): Promise<any> {
+  async getAccount(opts: GetAccount): Promise<any> {
     return await this.fetch(`${this.nodeos_url}/v1/chain/get_account`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(opts),
     });
   }
 
-  async getTableRows(payload: GetTableRowsPayload): Promise<any> {
+  async getTableRows(opts: GetTableRows): Promise<any> {
     return await this.fetch(`${this.nodeos_url}/v1/chain/get_table_rows`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(opts),
     });
   }
 

@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        newchat: './src/index.ts',
+        newchatsdk: './src/index.ts',
     },
     mode: 'production',
     module: {

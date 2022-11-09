@@ -9,7 +9,7 @@ export interface GetCurrencyBalance {
   symbol?: string;
 }
 
-export interface GetTableByScopePayload {
+export interface GetTableByScope {
   code: string;
   table?: string;
   lower_bound?: string;
@@ -19,11 +19,11 @@ export interface GetTableByScopePayload {
   show_payer?: boolean;
 }
 
-export interface GetAccountPayload {
+export interface GetAccount {
   account_name: string;
 }
 
-export interface GetTableRowsPayload {
+export interface GetTableRows {
   json: boolean;
   code: string;
   scope: string;
