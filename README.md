@@ -18,10 +18,10 @@ Web library can be found in the [dist] folder
 
 ```javascript
 // standard import
-const { ActionGenerator, HyperionApi } = require("@newchat/new.chat-sdk");
+const { ActionGenerator, ChainApi, HyperionApi } = require("@newchat/new.chat-sdk");
 
 // ES6 import
-import { ActionGenerator, HyperionApi } from "@newchat/new.chat-sdk"
+import { ActionGenerator, ChainApi, HyperionApi } from "@newchat/new.chat-sdk"
 ```
 
 ## Documentation
@@ -29,6 +29,10 @@ import { ActionGenerator, HyperionApi } from "@newchat/new.chat-sdk"
 ### ChainApi
 
 Uses only native nodeos calls to chain api plugin.
+
+### HyperionApi
+
+Uses only native hyperion calls to hyperion api.
 
 ### ActionGenerator
 
