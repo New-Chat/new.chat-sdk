@@ -2,6 +2,7 @@ import {
   GetTableByScope,
   GetAccount,
   GetTableRows,
+  ContactPayload,
   ChannelPayload,
 } from "../interfaces";
 
@@ -40,26 +41,26 @@ export class ChainApi {
     });
   }
 
-  async getPrivateChannel(opts: ChannelPayload): Promise<any> {
+  async getContact(opts: ContactPayload): Promise<any> {
     return this.getTableRows({
       json: true,
       code: this.contract,
-      scope: this.contract,
-      table: "prvchannels",
-      table_key: opts.tag,
-      lower_bound: opts.tag,
-      upper_bound: opts.tag,
+      scope: opts.owner,
+      table: "contacts",
+      table_key: opts.account,
+      lower_bound: opts.account,
+      upper_bound: opts.account,
       key_type: "name",
       index_position: "1",
     });
   }
 
-  async getPublicChannel(opts: ChannelPayload): Promise<any> {
+  async getChannel(opts: ChannelPayload): Promise<any> {
     return this.getTableRows({
       json: true,
       code: this.contract,
       scope: this.contract,
-      table: "pubchannels",
+      table: "channels",
       table_key: opts.tag,
       lower_bound: opts.tag,
       upper_bound: opts.tag,

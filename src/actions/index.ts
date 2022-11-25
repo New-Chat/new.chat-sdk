@@ -14,7 +14,7 @@ export class ActionGenerator {
     return this._pack(this.contract, authorization, "crtpubch", {
       channel,
       owner,
-      description
+      description,
     });
   }
 
@@ -29,7 +29,29 @@ export class ActionGenerator {
       channel,
       owner,
       description,
-      public_key
+      public_key,
+    });
+  }
+
+  async addContact(
+    authorization: EosioAuthorizationObject[],
+    owner: string,
+    account: string
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "addcontact", {
+      owner,
+      account,
+    });
+  }
+
+  async removeContact(
+    authorization: EosioAuthorizationObject[],
+    owner: string,
+    account: string
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.contract, authorization, "rmvcontact", {
+      owner,
+      account,
     });
   }
 
@@ -48,7 +70,7 @@ export class ActionGenerator {
       iv: iv,
       ephem_key: ephemKey,
       cipher_text: cipherText,
-      mac: mac
+      mac: mac,
     });
   }
 
@@ -67,7 +89,7 @@ export class ActionGenerator {
       iv: iv,
       ephem_key: ephemKey,
       cipher_text: cipherText,
-      mac: mac
+      mac: mac,
     });
   }
 
@@ -86,7 +108,7 @@ export class ActionGenerator {
       iv: iv,
       ephem_key: ephemKey,
       cipher_text: cipherText,
-      mac: mac
+      mac: mac,
     });
   }
 

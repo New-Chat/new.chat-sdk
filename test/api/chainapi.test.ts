@@ -31,6 +31,29 @@ describe("Chain Api Tests", () => {
     expect(res).not.be.undefined;
   }).timeout(2000);
 
+  it("Get Contact Test", async () => {
+    const res = await chainApi.getContact({
+      owner: "alice",
+      account: "bob",
+    });
+
+    expect(res).not.be.undefined;
+  }).timeout(2000);
+
+  it("Get Contacts Test", async () => {
+    const res = await chainApi.getTableRows({
+      json: true,
+      code: chainApi.contract,
+      scope: chainApi.contract,
+      table: "contacts",
+      lower_bound: "tester",
+      upper_bound: "testerzzzzzz",
+      limit: 10,
+    });
+
+    expect(res).not.be.undefined;
+  }).timeout(2000);
+
   it("Get Channels Test", async () => {
     const res = await chainApi.getTableRows({
       json: true,
