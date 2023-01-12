@@ -3,7 +3,7 @@ import { EosioAuthorizationObject, EosioActionObject } from "../types";
 /* tslint:disable:variable-name */
 
 export class ActionGenerator {
-  constructor(readonly contract: string) {}
+  constructor(readonly contract: string, readonly tokenContract: string) {}
 
   async createPublicChannel(
     authorization: EosioAuthorizationObject[],
@@ -112,6 +112,19 @@ export class ActionGenerator {
     });
   }
 
+  async sendToken(
+    authorization: EosioAuthorizationObject[],
+    from: string,
+    to: string,
+    quantity: string
+  ): Promise<EosioActionObject[]> {
+    return this._pack(this.tokenContract, authorization, "transfer", {
+      from: from,
+      to: to,
+      quantity: quantity,
+      memo: "Transfer sent via NewChat"
+    });
+  }
   protected _pack(
     account: string,
     authorization: EosioAuthorizationObject[],

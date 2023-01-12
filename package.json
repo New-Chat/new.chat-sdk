@@ -1,6 +1,6 @@
 {
   "name": "@newchat/new.chat-sdk",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "⚒️ An SDK for building applications on top of NewChat",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
