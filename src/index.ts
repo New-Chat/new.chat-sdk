@@ -1,5 +1,5 @@
-export * from "./actions/newchat";
+export * from "./actions";
 export * from "./api";
 export * from "./interfaces";
-export * from "./types/utils";
+export * from "./types";
 export * from "./utils";
