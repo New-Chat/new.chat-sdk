@@ -1,9 +1,10 @@
 import { KeyType } from "eosjs/dist/eosjs-numeric";
 import { PrivateKey } from "eosjs/dist/PrivateKey";
-// import { PublicKey } from "eosjs/dist/PublicKey";
 const { PublicKey } = require("eosjs/dist/PublicKey");
-import { ec } from "elliptic";
 
+// import { PublicKey, PrivateKey } from "@wharfkit/antelope";
+
+import { ec } from "elliptic";
 import CryptoJS from "crypto-js";
 import wordArray from "crypto-js/lib-typedarrays";
 import encHex from "crypto-js/enc-hex";
@@ -15,12 +16,14 @@ import { EncodeResult } from "../types";
 
 export function encryptMessage(
   plainText: string,
-  rcptPubKey: string
+  rcptPubKey: string,
+  keyType: KeyType = KeyType.k1
 ): EncodeResult {
-  const ellipticKey = PublicKey.fromString(rcptPubKey).toElliptic();
+    /** Export public key as `elliptic`-format public key */
+  const ellipticKey = PublicKey.fromString(rcptPubKey, keyType).toElliptic();
 
   const ephemKey = new ec("secp256k1").genKeyPair();
-  const ephemPublicKey = PublicKey.fromElliptic(ephemKey, KeyType.k1);
+  const ephemPublicKey = PublicKey.fromElliptic(ephemKey, keyType);
 
   const shared = Buffer.from(
     ephemKey.derive(ellipticKey.getPublic()).toString("hex"),
