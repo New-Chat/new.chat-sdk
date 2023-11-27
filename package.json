@@ -50,7 +50,6 @@
     "webpack-cli": "^4.7.10"
   },
   "dependencies": {
-    "@wharfkit/antelope": "^1.0.2",
     "crypto-js": "^4.1.1",
     "elliptic": "^6.5.2",
     "eosjs": "^22.1.0",
